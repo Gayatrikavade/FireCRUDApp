@@ -1,0 +1,102 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 mt-5">
+          <div class="card border-0 shadow p-3">
+            <div class="form-floating mb-3 text-center">
+                <h5 class="text-center text-warning">Add Students</h5>
+            </div>
+            <form [formGroup]="studentDetail">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" formControlName="firstName" id="firstName" name="firstName" >
+                    <label for="firstName">First Name:</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" formControlName="lastName" id="lastName" name="lastName" >
+                    <label for="lastName">Last Name</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" formControlName="email" id="email" name="email" >
+                    <label for="email">Email address</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" formControlName="mobile" id="mobile" name="mobile">
+                    <label for="mobile">Mobile</label>
+                </div>
+                  <button type="button" class="btn btn-outline-success" (click)="addStudent()">Add Student</button>
+                </form>
+          </div>
+        </div>
+        <div class="col-md-8 mt-2">
+          <h5 class="text-danger">Student List</h5>
+          <div class="card p-3 shadow">
+            <div class="card-body">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Mobile</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <tr *ngFor="let student of StudentList">
+                    <td>{{student.firstName}}</td>
+                    <td>{{student.lastName}}</td>
+                    <td>{{student.email}}</td>
+                    <td>{{student.mobile}}</td>
+                    <td>
+                      <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#editData" (click)="editStudent(student)">Update</button>
+                    </td>
+                    <td>
+                      <button class="btn btn-outline-danger" (click)="deleteStudent(student)">Delete</button>
+                    </td>
+                    
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal"  id="editData" tabindex="-1" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Student Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+    <form [formGroup]="studentDetail">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control"  formControlName="firstName" id="firstName" name="firstName" >
+          <label for="firstName">First Name:</label>
+      </div>
+      <div class="form-floating mb-3">
+          <input type="text" class="form-control" formControlName="lastName" id="lastName" name="lastName">
+          <label for="lastName">Last Name</label>
+      </div>
+      <div class="form-floating mb-3">
+          <input type="email" class="form-control" formControlName="email" id="email" name="email" >
+          <label for="email">Email address</label>
+      </div>
+      <div class="form-floating mb-3">
+          <input type="text" class="form-control" formControlName="mobile" id="mobile" name="mobile" >
+          <label for="mobile">Mobile</label>
+      </div>
+     
+    
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-outline-success" (click)="updateStudent(studentObj)">Update</button>
+      </div>
+    </form>
+    </div>
+    
+  </div>
+</div>
